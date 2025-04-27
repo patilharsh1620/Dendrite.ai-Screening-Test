@@ -1,0 +1,159 @@
+{
+    "session_name": "test",
+    "session_description": "test",
+    "design_state_data": {
+        "session_info": {
+            "project_id": "1",
+            "experiment_id": "kkkk-11",
+            "dataset": "iris_modified.csv",
+            "session_name": "test",
+            "session_description": "test"
+        },
+        "target": {
+            "prediction_type": "Regression",
+            "target": "petal_width",
+            "type": "regression",
+            "partitioning": true
+        },
+        "train": {
+            "policy": "Split the dataset",
+            "time_variable": "sepal_length",
+            "sampling_method": "No sampling(whole data)",
+            "split": "Randomly",
+            "k_fold": false,
+            "train_ratio": 0,
+            "random_seed": 0
+        },
+        "metrics": {
+            "optomize_model_hyperparameters_for": "AUC",
+            "optimize_threshold_for": "F1 Score",
+            "compute_lift_at": 0,
+            "cost_matrix_gain_for_true_prediction_true_result": 1,
+            "cost_matrix_gain_for_true_prediction_false_result": 0,
+            "cost_matrix_gain_for_false_prediction_true_result": 0,
+            "cost_matrix_gain_for_false_prediction_false_result": 0
+        },
+        "feature_handling": {
+            "sepal_length": {
+                "feature_name": "sepal_length",
+                "is_selected": true,
+                "feature_variable_type": "numerical",
+                "feature_details": {
+                    "numerical_handling": "Keep as regular numerical feature",
+                    "rescaling": "No rescaling",
+                    "make_derived_feats": false,
+                    "missing_values": "Impute",
+                    "impute_with": "Average of values",
+                    "impute_value": 0
+                }
+            },
+            "sepal_width": {
+                "feature_name": "sepal_width",
+                "is_selected": true,
+                "feature_variable_type": "numerical",
+                "feature_details": {
+                    "numerical_handling": "Keep as regular numerical feature",
+                    "rescaling": "No rescaling",
+                    "make_derived_feats": false,
+                    "missing_values": "Impute",
+                    "impute_with": "custom",
+                    "impute_value": -1
+                }
+            },
+            "petal_length": {
+                "feature_name": "petal_length",
+                "is_selected": true,
+                "feature_variable_type": "numerical",
+                "feature_details": {
+                    "numerical_handling": "Keep as regular numerical feature",
+                    "rescaling": "No rescaling",
+                    "make_derived_feats": false,
+                    "missing_values": "Impute",
+                    "impute_with": "Average of values",
+                    "impute_value": 0
+                }
+            },
+            "petal_width": {
+                "feature_name": "petal_width",
+                "is_selected": true,
+                "feature_variable_type": "numerical",
+                "feature_details": {
+                    "numerical_handling": "Keep as regular numerical feature",
+                    "rescaling": "No rescaling",
+                    "make_derived_feats": false,
+                    "missing_values": "Impute",
+                    "impute_with": "custom",
+                    "impute_value": -2
+                }
+            },
+            "species": {
+                "feature_name": "species",
+                "is_selected": true,
+                "feature_variable_type": "text",
+                "feature_details": {
+                    "text_handling": "Tokenize and hash",
+                    "hash_columns": 0
+                }
+            }
+        },
+        "feature_generation": {
+            "linear_interactions": [
+                [
+                    "petal_length",
+                    "sepal_width"
+                ]
+            ],
+            "linear_scalar_type": "robust",
+            "polynomial_interactions": [
+                "petal_length/sepal_width",
+                "petal_width/species"
+            ],
+            "explicit_pairwise_interactions": [
+                "sepal_width/sepal_length",
+                "petal_width/sepal_length"
+            ]
+        },
+        "feature_reduction": {
+            "feature_reduction_method": "Tree-based",
+            "num_of_features_to_keep": "4",
+            "num_of_trees": "5",
+            "depth_of_trees": "6"
+        },
+        "hyperparameters": {
+            "stratergy": "Grid Search",
+            "shuffle_grid": true,
+            "random_state": 1,
+            "max_iterations": 2,
+            "max_search_time": 3,
+            "parallelism": 5,
+            "cross_validation_stratergy": "Time-based K-fold(with overlap)",
+            "num_of_folds": 6,
+            "split_ratio": 0,
+            "stratified": true
+        },
+        "weighting_stratergy": {
+            "weighting_stratergy_method": "Sample weights",
+            "weighting_stratergy_weight_variable": "petal_length"
+        },
+        "probability_calibration": {
+            "probability_calibration_method": "Sigmoid - Platt Scaling"
+        },
+        "algorithms": {
+            "RandomForestClassifier": {
+                "is_selected": false
+            },
+            "RandomForestRegressor": {
+                "model_name": "Random Forest Regressor",
+                "is_selected": true,
+                "min_trees": 10,
+                "max_trees": 20,
+                "feature_sampling_statergy": "Default",
+                "min_depth": 20,
+                "max_depth": 25,
+                "min_samples_per_leaf_min_value": 5,
+                "min_samples_per_leaf_max_value": 10,
+                "parallelism": 0
+            }
+        }
+    }
+}
